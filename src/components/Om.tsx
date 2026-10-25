@@ -12,7 +12,7 @@ export function Om() {
       </li>
       <li>
         <b>Lösa roller</b>
-        <span>Var och en bidrar med det den kan och har tid med, från att hitta event till att ordna AW.</span>
+        <span>Var och en bidrar med det den kan och har tid med. Vill du dra i ett event är det fritt fram, och du tar ansvar för det.</span>
       </li>
     </ul>
   );

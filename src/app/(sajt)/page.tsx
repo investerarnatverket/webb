@@ -14,7 +14,7 @@ export default async function Start() {
         stor
         etikett="Göteborg · Västra Götaland"
         rubrik="Från Unga Aktiesparare till Aktiespararna."
-        ingress="Ett nätverk för dig mellan 25 och 55 som vill fortsätta utvecklas som investerare. Vi samlar event från båda och ses själva på AW var tredje torsdag."
+        ingress="Ett nätverk för dig mellan 25 och 55 som vill fortsätta utvecklas som investerare. Här samlar vi event från Aktiespararna, Unga Aktiesparare och oss själva, i Göteborg och Västra Götaland."
       >
         <div className="knappar">
           <a href="#event" className="knapp">

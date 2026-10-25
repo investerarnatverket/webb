@@ -32,14 +32,6 @@ export function exempelEvent(): Event[] {
     ...falt,
   });
   return [
-    ev("exempel-aw-1", {
-      titel: "AW",
-      beskrivning: "Öppet för alla i nätverket och för dig som är nyfiken. Vi ses var tredje torsdag.",
-      startar: kl(torsdag, 17),
-      slutar: kl(torsdag, 20),
-      plats: "Centrala Göteborg",
-      arrangor: "natverket",
-    }),
     ev("exempel-2", {
       titel: "Bolagskväll med tre presentationer",
       beskrivning: "Tre noterade bolag presenterar sig och svarar på frågor. Anmälan hos Aktiespararna.",
@@ -64,13 +56,14 @@ export function exempelEvent(): Event[] {
       plats: "Göteborg",
       arrangor: "natverket",
     }),
-    ev("exempel-aw-2", {
-      titel: "AW",
-      beskrivning: "Öppet för alla i nätverket och för dig som är nyfiken. Vi ses var tredje torsdag.",
-      startar: kl(torsdag + 21, 17),
-      slutar: kl(torsdag + 21, 20),
-      plats: "Centrala Göteborg",
-      arrangor: "natverket",
+    ev("exempel-stamma", {
+      titel: "Gemensamt besök på årsstämman i Exempelbolaget",
+      beskrivning: "Vi går tillsammans. Anmälan till stämman görs hos bolaget.",
+      startar: kl(torsdag + 21, 15),
+      slutar: kl(torsdag + 21, 17),
+      plats: "Göteborg",
+      arrangor: "annan",
+      arrangorNamn: "Exempelbolaget",
     }),
   ];
 }

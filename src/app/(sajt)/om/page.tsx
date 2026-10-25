@@ -20,8 +20,8 @@ export default async function OmOss() {
             </p>
             <p>
               Vi vill vara bryggan mellan de två: när man växer ur Unga Aktiesparare ska det vara lätt att hitta nästa
-              sammanhang. Därför samlar vi event från båda på ett ställe, tillsammans med våra egna, och ses på AW var
-              tredje torsdag.
+              sammanhang. Därför samlar vi event från båda på ett ställe, tillsammans med våra egna och gemensamma
+              bolagsbesök och bolagsstämmor.
             </p>
           </div>
         </section>

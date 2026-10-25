@@ -22,6 +22,8 @@ export type Event = {
   slutar: string | null;
   plats: string;
   arrangor: Arrangor;
+  // Namnet som visas när arrangören är "annan", t.ex. bolaget vid en bolagsstämma.
+  arrangorNamn?: string;
   lank: string | null;
   publicerad: boolean;
   heldag?: boolean;

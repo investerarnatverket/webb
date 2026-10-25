@@ -18,7 +18,10 @@ dröja en stund innan ändringar syns i den publicerade länken.
 
 Så lägger du in ett event:
 - Lägg det i kalendern **Event**, inte i den vanliga kalendern. Allt i Event blir publikt.
-- Fyll i titel, tid och plats som vanligt. Återkommande händelser (t.ex. AW) fungerar, även undantag och flyttade tillfällen.
+- Fyll i titel, tid och plats som vanligt. Återkommande händelser fungerar, även undantag och flyttade tillfällen.
+- Den månatliga träffen (tredje torsdagen) är **inte publik**. Den hör hemma i Messenger-gruppen, inte i Event.
+- Bolagsbesök och bolagsstämmor: skriv `Arrangör: Bolagets namn` i beskrivningen, så visas bolaget som arrangör.
+- Flera pass av samma event (t.ex. "(förmiddag)" och "(eftermiddag)") visas som ett kort med båda tiderna.
 - Klistra in länken till anmälan i beskrivningen. Är det en länk till aktiespararna.se märks eventet automatiskt "Aktiespararna".
 - Annan arrangör? Skriv en rad `Arrangör: Unga Aktiesparare` i beskrivningen.
 - Markerar du en händelse som **privat** i Outlook visas den inte på sajten.

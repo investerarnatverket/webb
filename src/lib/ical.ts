@@ -127,7 +127,10 @@ export function tolkaKalender(ics: string, nu = Date.now(), dagarFram = 180): Ev
         beskrivningRa.match(URL_MONSTER)?.[0] ??
         String(item.location ?? "").match(URL_MONSTER)?.[0] ??
         null;
-      const arrangorRad = beskrivningRa.match(/^\s*arrang[öo]r\s*:\s*(.+)$/im)?.[1] ?? "";
+      const arrangorRad = (beskrivningRa.match(/^\s*arrang[öo]r\s*:\s*(.+)$/im)?.[1] ?? "").trim();
+      // "Arrangör: Volvo" (t.ex. en bolagsstämma) ger arrangören "annan" med det namnet.
+      const kandArrangor = arrangorFran(arrangorRad);
+      const egenArrangor = arrangorRad && !kandArrangor ? arrangorRad.slice(0, 60) : undefined;
       const kategorier = k.getAllProperties("categories").flatMap((p) => p.getValues().map(String)).join(" ");
 
       ut.push({
@@ -138,7 +141,8 @@ export function tolkaKalender(ics: string, nu = Date.now(), dagarFram = 180): Ev
         // Heldag: DTEND är dagen efter, så sluttiden visas inte.
         slutar: start.isDate ? null : slutar,
         plats: String(item.location ?? "").replace(URL_MONSTER, "").trim(),
-        arrangor: arrangorFran(arrangorRad) ?? arrangorFran(kategorier) ?? arrangorFranLank(lank),
+        arrangor: egenArrangor ? "annan" : (kandArrangor ?? arrangorFran(kategorier) ?? arrangorFranLank(lank)),
+        arrangorNamn: egenArrangor,
         lank,
         publicerad: true,
         heldag: start.isDate,

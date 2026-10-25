@@ -33,7 +33,7 @@ export function EventLista({ event }: { event: Event[] }) {
               <span className="event-manad">{manad.format(new Date(e.startar)).replace(".", "")}</span>
             </time>
             <div className="event-text">
-              <span className={`arrangor arrangor-${e.arrangor}`}>{ARRANGORER[e.arrangor]}</span>
+              <span className={`arrangor arrangor-${e.arrangor}`}>{e.arrangorNamn ?? ARRANGORER[e.arrangor]}</span>
               <h3>
                 {e.lank ? (
                   <a href={e.lank} rel="noopener" target="_blank">
