@@ -4,6 +4,15 @@ import { visaDatum, visaKlocka } from "@/lib/tid";
 const dag = new Intl.DateTimeFormat("sv-SE", { timeZone: "Europe/Stockholm", day: "numeric" });
 const manad = new Intl.DateTimeFormat("sv-SE", { timeZone: "Europe/Stockholm", month: "short" });
 
+const spann = (startar: string, slutar: string | null) =>
+  slutar ? `${visaKlocka(startar)}–${visaKlocka(slutar)}` : visaKlocka(startar);
+
+// "09:00–12:00 och 13:00–16:00", eller med kommatecken vid fler pass.
+function passTider(tider: { startar: string; slutar: string | null }[]) {
+  const delar = tider.map((t) => spann(t.startar, t.slutar));
+  return `${delar.slice(0, -1).join(", ")} och ${delar.at(-1)}`;
+}
+
 export function EventLista({ event }: { event: Event[] }) {
   if (event.length === 0) {
     return <p className="tomt">Inga event inlagda just nu. Prenumerera, så hör vi av oss när nästa är spikat.</p>;
@@ -14,9 +23,9 @@ export function EventLista({ event }: { event: Event[] }) {
       {event.map((e) => {
         const tid = e.heldag
           ? "Heldag"
-          : e.slutar
-            ? `${visaKlocka(e.startar)}–${visaKlocka(e.slutar)}`
-            : visaKlocka(e.startar);
+          : e.tider && e.tider.length > 1
+            ? passTider(e.tider)
+            : spann(e.startar, e.slutar);
         return (
           <li key={e.id} className="event">
             <time className="event-datum" dateTime={e.startar} aria-label={visaDatum(e.startar)}>

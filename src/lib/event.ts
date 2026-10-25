@@ -2,6 +2,7 @@ import "server-only";
 import { cacheLife, cacheTag } from "next/cache";
 import { DEMO, exempelEvent } from "@/lib/demo";
 import { tolkaKalender } from "@/lib/ical";
+import { slaIhopPass } from "@/lib/pass";
 import { publikKlient } from "@/lib/supabase/klienter";
 
 export const ARRANGORER = {
@@ -24,6 +25,8 @@ export type Event = {
   lank: string | null;
   publicerad: boolean;
   heldag?: boolean;
+  // Satt när flera pass slagits ihop till ett kort (se pass.ts).
+  tider?: { startar: string; slutar: string | null }[];
 };
 
 export const EVENT_KOLUMNER = "id, titel, beskrivning, startar, slutar, plats, arrangor, lank, publicerad";
@@ -41,7 +44,7 @@ export async function kommandeEvent(max?: number): Promise<Event[]> {
     cacheLife({ stale: 300, revalidate: 900, expire: 86400 });
     const svar = await fetch(kalender, { headers: { accept: "text/calendar" } });
     if (!svar.ok) throw new Error(`Kunde inte läsa Outlook-kalendern: HTTP ${svar.status}`);
-    return tolkaKalender(await svar.text()).slice(0, max);
+    return slaIhopPass(tolkaKalender(await svar.text())).slice(0, max);
   }
 
   cacheLife("hours");
