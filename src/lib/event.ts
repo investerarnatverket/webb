@@ -1,6 +1,7 @@
 import "server-only";
 import { cacheLife, cacheTag } from "next/cache";
 import { DEMO, exempelEvent } from "@/lib/demo";
+import { tolkaKalender } from "@/lib/ical";
 import { publikKlient } from "@/lib/supabase/klienter";
 
 export const ARRANGORER = {
@@ -22,17 +23,28 @@ export type Event = {
   arrangor: Arrangor;
   lank: string | null;
   publicerad: boolean;
+  heldag?: boolean;
 };
 
 export const EVENT_KOLUMNER = "id, titel, beskrivning, startar, slutar, plats, arrangor, lank, publicerad";
 
-// Publicerade event som inte är över. Cachas på servern och töms med
-// updateTag("event") när en medlem sparar, så besökarna ser ändringen direkt.
+// Event som inte är över. Källan väljs i den här ordningen:
+// 1. Den publicerade Outlook-kalendern (KALENDER_ICS_URL), läses om var 15:e minut.
+// 2. Påhittade exempel i demoläget.
+// 3. Supabase, cachat och tömt med updateTag("event") när en medlem sparar.
 export async function kommandeEvent(max?: number): Promise<Event[]> {
   "use cache";
   cacheTag("event");
-  cacheLife("hours");
 
+  const kalender = process.env.KALENDER_ICS_URL;
+  if (kalender) {
+    cacheLife({ stale: 300, revalidate: 900, expire: 86400 });
+    const svar = await fetch(kalender, { headers: { accept: "text/calendar" } });
+    if (!svar.ok) throw new Error(`Kunde inte läsa Outlook-kalendern: HTTP ${svar.status}`);
+    return tolkaKalender(await svar.text()).slice(0, max);
+  }
+
+  cacheLife("hours");
   if (DEMO) return exempelEvent().slice(0, max);
 
   // Ett event räknas som pågående i sex timmar efter start om sluttid saknas.

@@ -10,9 +10,23 @@ och lägger upp event; besökare kan prenumerera på mejl om nya event.
 | Event och medlemmar | **Supabase** (Postgres + inloggning), region EU | Medlemmar loggar in med engångskod, databasens radsäkerhet styr vem som får ändra |
 | Mejl | **Resend** | Bekräftelsemejl, inloggningskoder (via SMTP) och utskick till prenumeranter |
 
+## Event från Outlook
+
+Eventen hämtas från nätverkets Outlook-kalender **"Event"**, som är publicerad som ICS-länk
+(`KALENDER_ICS_URL` på Netlify). Sajten läser den på nytt var 15:e minut. Outlook kan också
+dröja en stund innan ändringar syns i den publicerade länken.
+
+Så lägger du in ett event:
+- Lägg det i kalendern **Event**, inte i den vanliga kalendern. Allt i Event blir publikt.
+- Fyll i titel, tid och plats som vanligt. Återkommande händelser (t.ex. AW) fungerar, även undantag och flyttade tillfällen.
+- Klistra in länken till anmälan i beskrivningen. Är det en länk till aktiespararna.se märks eventet automatiskt "Aktiespararna".
+- Annan arrangör? Skriv en rad `Arrangör: Unga Aktiespararna` i beskrivningen.
+- Markerar du en händelse som **privat** i Outlook visas den inte på sajten.
+- Från Aktiespararna: ta bara med titel, tid, plats och länk. Deras villkor tillåter inte att beskrivningar kopieras.
+
 ## Så hänger det ihop
 
-- **Event** ligger i tabellen `event`. Besökare ser bara publicerade; medlemmar ser även utkast.
+- **Event** kommer från Outlook (ovan). Utan kalenderlänk används tabellen `event` i Supabase. Besökare ser bara publicerade; medlemmar ser även utkast.
   Startsidan och `/event` cachas och töms direkt när en medlem sparar.
 - **Medlem** = en rad i `medlemmar`. Alla medlemmar kan lägga till och ta bort andra (inga fasta roller).
   Inloggning sker med en sexsiffrig kod på mejlen, inte en länk: Outlooks Safe Links öppnar länkar

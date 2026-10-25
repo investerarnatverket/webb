@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Schibsted_Grotesk } from "next/font/google";
-import { DEMO } from "@/lib/demo";
+import { DEMO, RIKTIGA_EVENT } from "@/lib/demo";
 import "./globals.css";
 
 // next/font laddar ner typsnittet vid bygget och serverar det från sajten,
@@ -23,7 +23,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body>
         {DEMO && (
           <p className="demo-rad">
-            <strong>Utkast.</strong> Eventen är påhittade exempel och formulären skickar ingenting.
+            <strong>Utkast.</strong>{" "}
+            {RIKTIGA_EVENT
+              ? "Prenumerationen är inte igång än, så formuläret skickar ingenting."
+              : "Eventen är påhittade exempel och formulären skickar ingenting."}
           </p>
         )}
         <header className="sidhuvud">

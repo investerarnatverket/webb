@@ -12,7 +12,11 @@ export function EventLista({ event }: { event: Event[] }) {
   return (
     <ol className="event-lista">
       {event.map((e) => {
-        const tid = e.slutar ? `${visaKlocka(e.startar)}–${visaKlocka(e.slutar)}` : visaKlocka(e.startar);
+        const tid = e.heldag
+          ? "Heldag"
+          : e.slutar
+            ? `${visaKlocka(e.startar)}–${visaKlocka(e.slutar)}`
+            : visaKlocka(e.startar);
         return (
           <li key={e.id} className="event">
             <time className="event-datum" dateTime={e.startar} aria-label={visaDatum(e.startar)}>

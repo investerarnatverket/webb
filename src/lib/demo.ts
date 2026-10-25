@@ -6,6 +6,9 @@ import { franFalt, tillFalt } from "@/lib/tid";
 // eftersom Netlify inte ger funktionerna netlify.toml-variabler vid körning.
 export const DEMO = process.env.DEMO === "1";
 
+// Med en Outlook-kalender kopplad är eventen riktiga även i demoläget.
+export const RIKTIGA_EVENT = Boolean(process.env.KALENDER_ICS_URL);
+
 const DAG = 86400_000;
 
 // Påhittade exempel, märkta som sådana i bannern. Datumen räknas från idag så
