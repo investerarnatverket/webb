@@ -9,7 +9,7 @@ const typsnitt = Schibsted_Grotesk({ subsets: ["latin"], variable: "--typsnitt" 
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.SAJT_URL ?? "http://localhost:3000"),
-  title: { default: "Investeringsnätverket", template: "%s · Investeringsnätverket" },
+  title: { default: "Investerarnätverket", template: "%s · Investerarnätverket" },
   description:
     "Event och information från Aktiespararna och Unga Aktiespararna, samlat av ett nätverk som vill vara bryggan mellan dem.",
 };
@@ -20,7 +20,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body>
         <header className="sidhuvud">
           <Link href="/" className="ordmarke">
-            Investerings<span>nätverket</span>
+            Investerar<span>nätverket</span>
           </Link>
           <nav aria-label="Huvudmeny">
             <Link href="/event">Event</Link>
@@ -29,7 +29,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </header>
         {children}
         <footer className="sidfot">
-          <p>Investeringsnätverket är en del av Aktiespararna.</p>
+          <p>Investerarnätverket är en del av Aktiespararna.</p>
           <nav aria-label="Sidfot">
             <Link href="/integritet">Integritet</Link>
             <Link href="/logga-in">Medlemsinloggning</Link>

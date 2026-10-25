@@ -5,7 +5,7 @@ import { kommandeEvent } from "@/lib/event";
 
 export const metadata: Metadata = {
   title: "Event",
-  description: "Kommande event från Investeringsnätverket, Aktiespararna och Unga Aktiespararna.",
+  description: "Kommande event från Investerarnätverket, Aktiespararna och Unga Aktiespararna.",
 };
 
 export default async function AllaEvent() {

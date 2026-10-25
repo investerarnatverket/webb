@@ -1,4 +1,4 @@
--- Investeringsnätverket: grundschema.
+-- Investerarnätverket: grundschema.
 -- Kör i Supabase: SQL Editor -> klistra in -> Run (eller `supabase db push`).
 --
 -- Medlem = en rad i medlemmar. Rader läggs till av sajten med den hemliga

@@ -26,7 +26,7 @@ export async function prenumerera(_: PrenumerationsLage, formular: FormData): Pr
     text: [
       "Hej!",
       "",
-      "Någon, förhoppningsvis du, vill få mejl från Investeringsnätverket om kommande event.",
+      "Någon, förhoppningsvis du, vill få mejl från Investerarnätverket om kommande event.",
       "Bekräfta med länken nedan. Den gäller i tre dygn.",
       "",
       lank,

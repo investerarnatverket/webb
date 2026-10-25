@@ -11,7 +11,7 @@ export default async function OmOss() {
       <h1>Om oss</h1>
       <div className="lopande">
         <p>
-          Investeringsnätverket är en grupp människor mellan 25 och 55 år. Vi är en del av Aktiespararna och
+          Investerarnätverket är en grupp människor mellan 25 och 55 år. Vi är en del av Aktiespararna och
           samarbetar med både Aktiespararna och Unga Aktiespararna. Vi konkurrerar inte med någon av dem.
         </p>
         <p>

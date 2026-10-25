@@ -3,7 +3,7 @@ import { cacheLife, cacheTag } from "next/cache";
 import { publikKlient } from "@/lib/supabase/klienter";
 
 export const ARRANGORER = {
-  natverket: "Investeringsnätverket",
+  natverket: "Investerarnätverket",
   aktiespararna: "Aktiespararna",
   unga_aktiespararna: "Unga Aktiespararna",
   annan: "Annan arrangör",

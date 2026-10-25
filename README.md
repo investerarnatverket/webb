@@ -1,4 +1,4 @@
-# Investeringsnätverket – webbplatsen
+# Investerarnätverket – webbplatsen
 
 Samlar event från nätverket, Aktiespararna och Unga Aktiespararna. Medlemmar loggar in
 och lägger upp event; besökare kan prenumerera på mejl om nya event.
@@ -33,7 +33,7 @@ supabase/migrations/   databasschemat
 ## Komma igång – i den här ordningen
 
 ### 1. Domän
-Registrera `investeringsnatverket.se` (ledig 2026-10-25) hos valfri registrar. Resend kan inte
+Registrera `investerarnatverket.se` (ledig 2026-10-25) hos valfri registrar. Resend kan inte
 skicka från en Outlook-adress; avsändaren måste ligga på en egen domän. Outlook-adressen används
 som svarsadress (`KONTAKT_EPOST`).
 
@@ -50,7 +50,7 @@ som svarsadress (`KONTAKT_EPOST`).
 2. *SQL Editor*: kör `supabase/migrations/20261025000000_grund.sql`.
 3. *Authentication → Sign In / Providers*: stäng av **Allow new users to sign up**. Konton skapas bara från sajtens medlemssida.
 4. *Authentication → Emails → Templates → Magic Link*: byt innehållet så att mejlet visar koden, t.ex.
-   `Din inloggningskod till Investeringsnätverket: {{ .Token }}` (och ta bort länken).
+   `Din inloggningskod till Investerarnätverket: {{ .Token }}` (och ta bort länken).
 5. *Authentication → Emails → SMTP Settings*: lägg in Resend (`smtp.resend.com`, port 465, användare `resend`,
    lösenord = en Resend-API-nyckel). Supabases inbyggda mejl går bara till projektets egna teammedlemmar,
    så utan detta får medlemmarna ingen kod.
