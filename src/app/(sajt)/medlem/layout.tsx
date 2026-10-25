@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { loggaUt } from "@/app/logga-in/actions";
+import { loggaUt } from "@/app/(sajt)/logga-in/actions";
 
 export const metadata: Metadata = { robots: { index: false } };
 

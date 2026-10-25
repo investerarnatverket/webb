@@ -11,8 +11,8 @@ export const RIKTIGA_EVENT = Boolean(process.env.KALENDER_ICS_URL);
 
 const DAG = 86400_000;
 
-// Påhittade exempel, märkta som sådana i bannern. Datumen räknas från idag så
-// att utkastet alltid har kommande event.
+// Påhittade exempel för utkastet och designförslagen, märkta som exempel där de
+// visas. Datumen räknas från idag så att det alltid finns kommande event.
 export function exempelEvent(): Event[] {
   // Klockslag i svensk tid, så att sommar- och vintertid blir rätt.
   const kl = (dagar: number, timme: number, minut = 0) => {
@@ -20,51 +20,57 @@ export function exempelEvent(): Event[] {
     const tid = `${String(timme).padStart(2, "0")}:${String(minut).padStart(2, "0")}`;
     return franFalt(`${datum}T${tid}`)!;
   };
+  // Nästa torsdag minst två dagar bort, i svensk tid.
+  const veckodag = new Date(kl(0, 12)).getUTCDay();
+  let torsdag = (4 - veckodag + 7) % 7;
+  if (torsdag < 2) torsdag += 7;
+
+  const ev = (id: string, falt: Omit<Event, "id" | "publicerad" | "lank"> & { lank?: string | null }): Event => ({
+    id,
+    lank: null,
+    publicerad: true,
+    ...falt,
+  });
   return [
-    {
-      id: "exempel-1",
-      titel: "Nätverksträff: Så läser du en årsredovisning",
-      beskrivning:
-        "Vi går igenom resultat- och balansräkning steg för steg, med ett svenskt bolag som exempel. Ingen förkunskap behövs.",
-      startar: kl(9, 18),
-      slutar: kl(9, 20),
+    ev("exempel-aw-1", {
+      titel: "AW",
+      beskrivning: "Öppet för alla i nätverket och för dig som är nyfiken. Vi ses var tredje torsdag.",
+      startar: kl(torsdag, 17),
+      slutar: kl(torsdag, 20),
+      plats: "Centrala Göteborg",
+      arrangor: "natverket",
+    }),
+    ev("exempel-2", {
+      titel: "Bolagskväll med tre presentationer",
+      beskrivning: "Tre noterade bolag presenterar sig och svarar på frågor. Anmälan hos Aktiespararna.",
+      startar: kl(torsdag + 5, 18),
+      slutar: kl(torsdag + 5, 20, 30),
+      plats: "Göteborg",
+      arrangor: "aktiespararna",
+    }),
+    ev("exempel-3", {
+      titel: "Kom igång med fondsparande",
+      beskrivning: "Indexfonder, avgifter och hur man tänker kring risk. Anmälan hos Unga Aktiesparare.",
+      startar: kl(torsdag + 12, 18),
+      slutar: null,
+      plats: "Göteborg",
+      arrangor: "unga_aktiespararna",
+    }),
+    ev("exempel-4", {
+      titel: "Så läser du en årsredovisning",
+      beskrivning: "Vi går igenom resultat- och balansräkning med ett svenskt bolag som exempel. Ingen förkunskap behövs.",
+      startar: kl(torsdag + 15, 18),
+      slutar: kl(torsdag + 15, 20),
       plats: "Göteborg",
       arrangor: "natverket",
-      lank: null,
-      publicerad: true,
-    },
-    {
-      id: "exempel-2",
-      titel: "Aktiekväll med bolagspresentationer",
-      beskrivning: "Tre bolag presenterar sig och svarar på frågor. Delat från Aktiespararna.",
-      startar: kl(16, 18, 30),
-      slutar: null,
-      plats: "Stockholm",
-      arrangor: "aktiespararna",
-      lank: null,
-      publicerad: true,
-    },
-    {
-      id: "exempel-3",
-      titel: "Kom igång med fondsparande",
-      beskrivning: "Indexfonder, avgifter och hur man tänker kring risk. Delat från Unga Aktiesparare.",
-      startar: kl(23, 19),
-      slutar: null,
-      plats: "Digitalt",
-      arrangor: "unga_aktiespararna",
-      lank: null,
-      publicerad: true,
-    },
-    {
-      id: "exempel-4",
-      titel: "Fika och portföljsnack",
-      beskrivning: "Avslappnad träff där vi pratar om hur vi sparar och vad vi lärt oss. Alla nivåer välkomna.",
-      startar: kl(37, 17, 30),
-      slutar: kl(37, 19),
-      plats: "Malmö",
+    }),
+    ev("exempel-aw-2", {
+      titel: "AW",
+      beskrivning: "Öppet för alla i nätverket och för dig som är nyfiken. Vi ses var tredje torsdag.",
+      startar: kl(torsdag + 21, 17),
+      slutar: kl(torsdag + 21, 20),
+      plats: "Centrala Göteborg",
       arrangor: "natverket",
-      lank: null,
-      publicerad: true,
-    },
+    }),
   ];
 }

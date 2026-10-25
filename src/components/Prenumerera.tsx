@@ -2,7 +2,7 @@
 
 import { useActionState } from "react";
 import Link from "next/link";
-import { prenumerera, type PrenumerationsLage } from "@/app/prenumerera/actions";
+import { prenumerera, type PrenumerationsLage } from "@/app/(sajt)/prenumerera/actions";
 
 export function Prenumerera() {
   const [lage, skicka, skickar] = useActionState<PrenumerationsLage, FormData>(prenumerera, { status: "tom" });
