@@ -1,6 +1,11 @@
-# Netlify känner igen Next.js och installerar adaptern själv.
+# Adaptern anges uttryckligen. Netlify lade inte till den av sig själv vid
+# första bygget och publicerade då repots rot, alltså källkoden, i stället för sajten.
 [build]
   command = "npm run build"
+  publish = ".next"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
 
 [build.environment]
   NODE_VERSION = "24"
