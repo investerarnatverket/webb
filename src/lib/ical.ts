@@ -59,11 +59,16 @@ function tillIso(t: ICAL.Time): string {
 
 const URL_MONSTER = /https:\/\/[^\s<>"')\]]+/i;
 
+// Länken visas för sig, så den plockas ur texten. En rad som bara var en ledtext
+// till länken ("Anmälan hos Aktiespararna: https://…") försvinner helt.
 function rensaBeskrivning(text: string): string {
   return text
     .split(/\r?\n/)
     .filter((rad) => !/^\s*arrang[öo]r\s*:/i.test(rad))
-    .map((rad) => rad.replace(/^\s*(anm[äa]lan|l[äa]nk|mer info)\s*:\s*/i, "").replace(new RegExp(URL_MONSTER, "gi"), "").trim())
+    .map((rad) => {
+      const utanLank = rad.replace(new RegExp(URL_MONSTER, "gi"), "").replace(/[ \t]{2,}/g, " ").trim();
+      return utanLank !== rad.trim() && /:$/.test(utanLank) ? "" : utanLank;
+    })
     .join("\n")
     .replace(/\n{3,}/g, "\n\n")
     .trim()
