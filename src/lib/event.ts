@@ -1,5 +1,6 @@
 import "server-only";
 import { cacheLife, cacheTag } from "next/cache";
+import { DEMO, exempelEvent } from "@/lib/demo";
 import { publikKlient } from "@/lib/supabase/klienter";
 
 export const ARRANGORER = {
@@ -32,6 +33,8 @@ export async function kommandeEvent(max?: number): Promise<Event[]> {
   cacheTag("event");
   cacheLife("hours");
 
+  if (DEMO) return exempelEvent().slice(0, max);
+
   // Ett event räknas som pågående i sex timmar efter start om sluttid saknas.
   const grans = new Date(Date.now() - 6 * 3600_000).toISOString();
   let fraga = publikKlient()
@@ -53,6 +56,9 @@ export async function publikaMedlemmar(): Promise<PublikMedlem[]> {
   "use cache";
   cacheTag("medlemmar");
   cacheLife("days");
+
+  // Inga påhittade personer i utkastet: avsnittet "Vilka vi är" döljs.
+  if (DEMO) return [];
 
   const { data, error } = await publikKlient()
     .from("medlemmar")

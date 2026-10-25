@@ -1,10 +1,11 @@
 "use server";
 
 import { Resend } from "resend";
+import { DEMO } from "@/lib/demo";
 import { miljo } from "@/lib/miljo";
 import { normaliseraEpost, skapaToken } from "@/lib/prenumeration";
 
-export type PrenumerationsLage = { status: "tom" | "skickad" | "fel"; meddelande?: string };
+export type PrenumerationsLage = { status: "tom" | "skickad" | "demo" | "fel"; meddelande?: string };
 
 export async function prenumerera(_: PrenumerationsLage, formular: FormData): Promise<PrenumerationsLage> {
   // Fältet "webbplats" är dolt för människor. Fyller någon i det är det en bot,
@@ -16,6 +17,9 @@ export async function prenumerera(_: PrenumerationsLage, formular: FormData): Pr
   if (formular.get("samtycke") !== "ja") {
     return { status: "fel", meddelande: "Kryssa i rutan så att vi vet att det är okej att mejla dig." };
   }
+
+  // Utkastet: formuläret valideras som på riktigt, men inget skickas eller sparas.
+  if (DEMO) return { status: "demo" };
 
   const lank = `${miljo.sajtUrl()}/prenumerera/bekrafta?t=${encodeURIComponent(skapaToken(epost))}`;
   const { error } = await new Resend(miljo.resendNyckel()).emails.send({

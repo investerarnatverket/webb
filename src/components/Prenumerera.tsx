@@ -7,6 +7,15 @@ import { prenumerera, type PrenumerationsLage } from "@/app/prenumerera/actions"
 export function Prenumerera() {
   const [lage, skicka, skickar] = useActionState<PrenumerationsLage, FormData>(prenumerera, { status: "tom" });
 
+  if (lage.status === "demo") {
+    return (
+      <p className="klart" role="status">
+        Det här är ett utkast, så inget mejl skickades. På den färdiga sajten får du nu ett mejl med en länk som
+        bekräftar prenumerationen.
+      </p>
+    );
+  }
+
   if (lage.status === "skickad") {
     return (
       <p className="klart" role="status">
