@@ -12,10 +12,10 @@ export default async function OmOss() {
       <div className="lopande">
         <p>
           Investerarnätverket är en grupp människor mellan 25 och 55 år. Vi är en del av Aktiespararna och
-          samarbetar med både Aktiespararna och Unga Aktiespararna. Vi konkurrerar inte med någon av dem.
+          samarbetar med både Aktiespararna och Unga Aktiesparare. Vi konkurrerar inte med någon av dem.
         </p>
         <p>
-          Vi vill vara bryggan mellan de två: när man växer ur Unga Aktiespararna ska det vara lätt att hitta nästa
+          Vi vill vara bryggan mellan de två: när man växer ur Unga Aktiesparare ska det vara lätt att hitta nästa
           sammanhang. Därför samlar vi event från båda på ett ställe, tillsammans med våra egna.
         </p>
         <p>Rollerna i nätverket är lösa. Var och en bidrar med det den kan och har tid med.</p>

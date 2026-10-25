@@ -10,7 +10,7 @@ export default async function Start() {
     <main>
       <section className="hero">
         <h1>
-          Bryggan mellan <span className="unga">Unga Aktiespararna</span> och{" "}
+          Bryggan mellan <span className="unga">Unga Aktiesparare</span> och{" "}
           <span className="aktiespararna">Aktiespararna</span>.
         </h1>
         <p className="ingress">

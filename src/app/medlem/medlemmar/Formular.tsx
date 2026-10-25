@@ -22,7 +22,7 @@ export function NyMedlem() {
         <input type="email" name="epost" required />
       </label>
       <label>
-        Roll <span className="valfri">t.ex. eventansvarig, kontakt mot Unga Aktiespararna</span>
+        Roll <span className="valfri">t.ex. eventansvarig, kontakt mot Unga Aktiesparare</span>
         <input name="roll" maxLength={80} />
       </label>
       <Besked lage={lage} />

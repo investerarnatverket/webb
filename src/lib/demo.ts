@@ -47,7 +47,7 @@ export function exempelEvent(): Event[] {
     {
       id: "exempel-3",
       titel: "Kom igång med fondsparande",
-      beskrivning: "Indexfonder, avgifter och hur man tänker kring risk. Delat från Unga Aktiespararna.",
+      beskrivning: "Indexfonder, avgifter och hur man tänker kring risk. Delat från Unga Aktiesparare.",
       startar: kl(23, 19),
       slutar: null,
       plats: "Digitalt",

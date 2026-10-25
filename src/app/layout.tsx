@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   robots: DEMO ? { index: false, follow: false } : undefined,
   title: { default: "Investerarnätverket", template: "%s · Investerarnätverket" },
   description:
-    "Event och information från Aktiespararna och Unga Aktiespararna, samlat av ett nätverk som vill vara bryggan mellan dem.",
+    "Event och information från Aktiespararna och Unga Aktiesparare, samlat av ett nätverk som vill vara bryggan mellan dem.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

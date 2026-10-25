@@ -1,6 +1,6 @@
 # Investerarnätverket – webbplatsen
 
-Samlar event från nätverket, Aktiespararna och Unga Aktiespararna. Medlemmar loggar in
+Samlar event från nätverket, Aktiespararna och Unga Aktiesparare. Medlemmar loggar in
 och lägger upp event; besökare kan prenumerera på mejl om nya event.
 
 | Del | Tjänst | Varför |
@@ -20,7 +20,7 @@ Så lägger du in ett event:
 - Lägg det i kalendern **Event**, inte i den vanliga kalendern. Allt i Event blir publikt.
 - Fyll i titel, tid och plats som vanligt. Återkommande händelser (t.ex. AW) fungerar, även undantag och flyttade tillfällen.
 - Klistra in länken till anmälan i beskrivningen. Är det en länk till aktiespararna.se märks eventet automatiskt "Aktiespararna".
-- Annan arrangör? Skriv en rad `Arrangör: Unga Aktiespararna` i beskrivningen.
+- Annan arrangör? Skriv en rad `Arrangör: Unga Aktiesparare` i beskrivningen.
 - Markerar du en händelse som **privat** i Outlook visas den inte på sajten.
 - Från Aktiespararna: ta bara med titel, tid, plats och länk. Deras villkor tillåter inte att beskrivningar kopieras.
 

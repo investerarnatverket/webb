@@ -5,7 +5,7 @@ import { kommandeEvent } from "@/lib/event";
 
 export const metadata: Metadata = {
   title: "Event",
-  description: "Kommande event från Investerarnätverket, Aktiespararna och Unga Aktiespararna.",
+  description: "Kommande event från Investerarnätverket, Aktiespararna och Unga Aktiesparare.",
 };
 
 export default async function AllaEvent() {
@@ -14,7 +14,7 @@ export default async function AllaEvent() {
   return (
     <main>
       <h1>Kommande event</h1>
-      <p className="ingress">Våra egna träffar och de vi delar från Aktiespararna och Unga Aktiespararna.</p>
+      <p className="ingress">Våra egna träffar och de vi delar från Aktiespararna och Unga Aktiesparare.</p>
       <EventLista event={event} />
       <section className="ruta" aria-labelledby="utskick">
         <h2 id="utskick">Få nästa event i mejlen</h2>

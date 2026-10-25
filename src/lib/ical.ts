@@ -7,8 +7,8 @@ import type { Arrangor, Event } from "./event";
 // Konventionen för den som lägger in event i Outlook:
 // - Titel, plats och tid fylls i som vanligt.
 // - En länk i beskrivningen (t.ex. anmälan hos Aktiespararna) blir eventets länk.
-// - Arrangören gissas från länken (aktiespararna.se, ungaaktiespararna.se),
-//   annars är det nätverket. En rad "Arrangör: Unga Aktiespararna" i
+// - Arrangören gissas från länken (aktiespararna.se, ungaaktiesparare.se),
+//   annars är det nätverket. En rad "Arrangör: Unga Aktiesparare" i
 //   beskrivningen går före gissningen.
 // - Händelser markerade som privata i Outlook visas aldrig.
 
@@ -29,7 +29,7 @@ function arrangorFran(text: string): Arrangor | null {
 function arrangorFranLank(lank: string | null): Arrangor {
   if (!lank) return "natverket";
   const vard = new URL(lank).hostname.replace(/^www\./, "");
-  if (vard.startsWith("ungaaktiespararna.") || vard.startsWith("unga.aktiespararna.")) return "unga_aktiespararna";
+  if (vard.endsWith("ungaaktiesparare.se")) return "unga_aktiespararna";
   if (vard.endsWith("aktiespararna.se")) return "aktiespararna";
   return "natverket";
 }

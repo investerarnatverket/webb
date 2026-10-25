@@ -7,7 +7,7 @@ import { publikKlient } from "@/lib/supabase/klienter";
 export const ARRANGORER = {
   natverket: "Investerarnätverket",
   aktiespararna: "Aktiespararna",
-  unga_aktiespararna: "Unga Aktiespararna",
+  unga_aktiespararna: "Unga Aktiesparare",
   annan: "Annan arrangör",
 } as const;
 
