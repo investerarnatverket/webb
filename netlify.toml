@@ -1,0 +1,6 @@
+# Netlify känner igen Next.js och installerar adaptern själv.
+[build]
+  command = "npm run build"
+
+[build.environment]
+  NODE_VERSION = "24"

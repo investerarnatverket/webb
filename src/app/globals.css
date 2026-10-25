@@ -1,0 +1,588 @@
+/* Färgerna betyder arrangör: rost = nätverket, grönt = Aktiespararna,
+   lila = Unga Aktiespararna. Allt annat är gråskala. */
+:root {
+  color-scheme: light dark;
+  --bg: #f7f5f0;
+  --yta: #ffffff;
+  --text: #1d1c1a;
+  --dampad: #5e5a53;
+  --linje: rgba(29, 28, 26, 0.12);
+  --natverket: #9a3f14;
+  --aktiespararna: #1f6b52;
+  --unga: #7a3d9e;
+  --fel: #a3241a;
+  --pa-accent: #ffffff;
+  --radie: 14px;
+  --bredd: 960px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #141311;
+    --yta: #1c1b19;
+    --text: #edeae3;
+    --dampad: #a39e94;
+    --linje: rgba(237, 234, 227, 0.1);
+    --natverket: #e8946a;
+    --aktiespararna: #6fc7a4;
+    --unga: #c29be6;
+    --fel: #ff8a7a;
+    --pa-accent: #141311;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--typsnitt), system-ui, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+main,
+.sidhuvud,
+.sidfot {
+  width: min(var(--bredd), 100% - 32px);
+  margin-inline: auto;
+}
+
+main {
+  padding-block: 32px 80px;
+}
+
+main.smal {
+  max-width: 640px;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.5em;
+}
+
+h1 {
+  font-size: clamp(2rem, 5.5vw, 3.4rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 2em;
+}
+
+a {
+  color: inherit;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--natverket);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.ingress {
+  font-size: 1.2rem;
+  color: var(--dampad);
+  max-width: 38em;
+  margin: 0 0 1.5em;
+}
+
+/* Sidhuvud och sidfot */
+
+.sidhuvud {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-block: 20px;
+  flex-wrap: wrap;
+}
+
+.ordmarke {
+  font-weight: 800;
+  font-size: 1.15rem;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+
+.ordmarke span {
+  color: var(--natverket);
+}
+
+.sidhuvud nav,
+.sidfot nav {
+  display: flex;
+  gap: 20px;
+}
+
+.sidhuvud nav a {
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.sidhuvud nav a:hover {
+  text-decoration: underline;
+}
+
+.sidfot {
+  border-top: 1px solid var(--linje);
+  padding-block: 24px 40px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px 24px;
+  flex-wrap: wrap;
+  color: var(--dampad);
+  font-size: 0.9rem;
+}
+
+.sidfot p {
+  margin: 0;
+}
+
+/* Startsidan */
+
+.hero {
+  padding-block: 32px 16px;
+}
+
+.hero h1 {
+  max-width: 15em;
+}
+
+.hero .unga {
+  color: var(--unga);
+}
+
+.hero .aktiespararna {
+  color: var(--aktiespararna);
+}
+
+.rubrik-rad {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 2em;
+}
+
+.rubrik-rad h1,
+.rubrik-rad h2 {
+  margin-top: 0;
+}
+
+.ruta {
+  margin-top: 56px;
+  padding: 28px;
+  background: var(--yta);
+  border: 1px solid var(--linje);
+  border-radius: var(--radie);
+}
+
+.ruta h2 {
+  margin-top: 0;
+}
+
+/* Eventlistan */
+
+.event-lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.event {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 20px;
+  padding: 20px;
+  background: var(--yta);
+  border: 1px solid var(--linje);
+  border-radius: var(--radie);
+}
+
+.event-datum {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
+  padding-top: 4px;
+}
+
+.event-dag {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+
+.event-manad {
+  margin-top: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--dampad);
+}
+
+.event-text {
+  min-width: 0;
+}
+
+.event h3 {
+  font-size: 1.2rem;
+  margin: 4px 0 4px;
+  overflow-wrap: anywhere;
+}
+
+.event-meta {
+  margin: 0;
+  color: var(--dampad);
+  font-size: 0.95rem;
+}
+
+.versal-forsta::first-letter {
+  text-transform: uppercase;
+}
+
+.event-beskrivning {
+  margin: 10px 0 0;
+  white-space: pre-line;
+  max-width: 40em;
+}
+
+.arrangor {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--dampad);
+}
+
+.arrangor-natverket {
+  color: var(--natverket);
+}
+
+.arrangor-aktiespararna {
+  color: var(--aktiespararna);
+}
+
+.arrangor-unga_aktiespararna {
+  color: var(--unga);
+}
+
+.tomt {
+  color: var(--dampad);
+}
+
+@media (max-width: 480px) {
+  .event {
+    grid-template-columns: 44px 1fr;
+    gap: 14px;
+    padding: 16px;
+  }
+
+  .event-dag {
+    font-size: 1.6rem;
+  }
+}
+
+/* Om oss */
+
+.lopande {
+  max-width: 38em;
+}
+
+.lopande h2 {
+  font-size: 1.2rem;
+  margin-top: 1.6em;
+}
+
+.personer {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.personer li {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding-block: 10px;
+  border-bottom: 1px solid var(--linje);
+  flex-wrap: wrap;
+}
+
+.person-namn {
+  font-weight: 600;
+}
+
+.person-roll {
+  color: var(--dampad);
+}
+
+/* Formulär */
+
+input,
+select,
+textarea,
+button {
+  font: inherit;
+  color: inherit;
+}
+
+input:not([type="checkbox"]),
+select,
+textarea {
+  width: 100%;
+  padding: 10px 12px;
+  background: var(--yta);
+  border: 1px solid var(--linje);
+  border-radius: 10px;
+}
+
+input:not([type="checkbox"]):focus,
+select:focus,
+textarea:focus {
+  border-color: var(--natverket);
+  outline: none;
+}
+
+input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin: 3px 0 0;
+  flex: none;
+  accent-color: var(--natverket);
+}
+
+button,
+.knapp {
+  display: inline-block;
+  padding: 10px 18px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--natverket);
+  color: var(--pa-accent);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.lank-knapp {
+  padding: 0;
+  background: none;
+  color: inherit;
+  font-weight: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.formular {
+  display: grid;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.formular label {
+  display: grid;
+  gap: 6px;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.formular button {
+  justify-self: start;
+}
+
+.falt-rad {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.valfri {
+  font-weight: 400;
+  color: var(--dampad);
+}
+
+.formular label.kryss,
+label.kryss {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-weight: 400;
+}
+
+.kryss.liten {
+  font-size: 0.9rem;
+  color: var(--dampad);
+}
+
+.prenumerera {
+  position: relative;
+  display: grid;
+  gap: 12px;
+  max-width: 34em;
+}
+
+.prenumerera-rad {
+  display: flex;
+  gap: 8px;
+}
+
+@media (max-width: 420px) {
+  .prenumerera-rad {
+    flex-direction: column;
+  }
+}
+
+/* input.falla: måste slå input:not([type="checkbox"]) ovan, annars får det
+   dolda fältet full bredd och sidan börjar rulla i sidled. */
+.dold-etikett,
+input.falla {
+  position: absolute;
+  padding: 0;
+  border: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.fel {
+  color: var(--fel);
+  margin: 0;
+}
+
+.klart {
+  color: var(--aktiespararna);
+  font-weight: 600;
+  margin: 0;
+}
+
+.hjalp,
+.laddar {
+  color: var(--dampad);
+}
+
+/* Medlemssidorna */
+
+.medlem-nav {
+  width: min(var(--bredd), 100% - 32px);
+  margin: 0 auto;
+  display: flex;
+  gap: 20px;
+  padding: 12px 16px;
+  background: var(--yta);
+  border: 1px solid var(--linje);
+  border-radius: var(--radie);
+}
+
+.medlem-nav form {
+  margin-left: auto;
+}
+
+.medlem-nav a {
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.admin-lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--linje);
+}
+
+.admin-lista li {
+  border-bottom: 1px solid var(--linje);
+}
+
+.admin-lista a,
+.medlem-rad {
+  display: flex;
+  flex-direction: column;
+  padding: 12px 4px;
+  text-decoration: none;
+}
+
+.medlem-rad {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.medlem-rad > span {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-titel {
+  font-weight: 600;
+}
+
+.admin-meta {
+  color: var(--dampad);
+  font-size: 0.9rem;
+}
+
+.utkast {
+  margin-left: 8px;
+  padding: 1px 6px;
+  border: 1px solid var(--linje);
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.radera {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid var(--linje);
+}
+
+button.fara {
+  background: none;
+  color: var(--fel);
+  border: 1px solid currentColor;
+}
+
+.fara-text {
+  color: var(--fel);
+}
