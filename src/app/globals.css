@@ -1,34 +1,28 @@
-/* Färgerna betyder arrangör: rost = nätverket, grönt = Aktiespararna,
-   lila = Unga Aktiesparare. Allt annat är gråskala. */
+/* Investerarnätverket. Färgerna kommer från de två organisationerna:
+   grönt från Unga Aktiesparare (#46b278), blått från Aktiespararna (#185da9).
+   Gradienten går från grönt till blått, som att växa upp från det ena till det andra.
+   Nyanser som bär text är mörkade för kontrast minst 4,5:1 mot vitt.
+   Etiketternas färg betyder arrangör: grönt = Unga Aktiesparare,
+   blått = Aktiespararna, turkos = nätverket. Allt annat är gråskala. */
 :root {
-  color-scheme: light dark;
-  --bg: #f7f5f0;
-  --yta: #ffffff;
-  --text: #1d1c1a;
-  --dampad: #5e5a53;
-  --linje: rgba(29, 28, 26, 0.12);
-  --natverket: #9a3f14;
-  --aktiespararna: #1f6b52;
-  --unga: #7a3d9e;
-  --fel: #a3241a;
-  --pa-accent: #ffffff;
-  --radie: 14px;
-  --bredd: 960px;
-}
+  color-scheme: light;
+  --gron-text: #27794b;
+  --turkos-text: #11727c;
+  --bla-text: #185da9;
+  --gradient: linear-gradient(115deg, #27794b 0%, #11727c 38%, #136fa0 68%, #185da9 100%);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #141311;
-    --yta: #1c1b19;
-    --text: #edeae3;
-    --dampad: #a39e94;
-    --linje: rgba(237, 234, 227, 0.1);
-    --natverket: #e8946a;
-    --aktiespararna: #6fc7a4;
-    --unga: #c29be6;
-    --fel: #ff8a7a;
-    --pa-accent: #141311;
-  }
+  --bg: #f0f2f5;
+  --yta: #ffffff;
+  --text: #1d232b;
+  --dampad: #5b6470;
+  --linje: rgba(29, 35, 43, 0.12);
+  --morkt: #1d232b;
+  --natverket: var(--turkos-text);
+  --aktiespararna: var(--bla-text);
+  --unga: var(--gron-text);
+  --fel: #b42318;
+  --pa-accent: #ffffff;
+  --radie: 10px;
 }
 
 *,
@@ -51,39 +45,37 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-main,
-.sidhuvud,
-.sidfot {
-  width: min(var(--bredd), 100% - 32px);
+.inner {
+  width: min(1080px, 100% - 32px);
   margin-inline: auto;
 }
 
-main {
-  padding-block: 32px 80px;
-}
-
-main.smal {
-  max-width: 640px;
+.inner.smal {
+  max-width: 720px;
 }
 
 h1,
 h2,
 h3 {
   line-height: 1.15;
-  letter-spacing: -0.02em;
   margin: 0 0 0.5em;
 }
 
 h1 {
-  font-size: clamp(2rem, 5.5vw, 3.4rem);
-  font-weight: 800;
-  letter-spacing: -0.035em;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
 }
 
 h2 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-top: 2em;
+  font-size: 1.8rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+h3 {
+  font-weight: 600;
+  letter-spacing: -0.01em;
 }
 
 a {
@@ -97,16 +89,16 @@ a:hover {
 }
 
 :focus-visible {
-  outline: 2px solid var(--natverket);
+  outline: 2px solid var(--bla-text);
   outline-offset: 3px;
   border-radius: 4px;
 }
 
 .ingress {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
+  font-weight: 300;
   color: var(--dampad);
   max-width: 38em;
-  margin: 0 0 1.5em;
 }
 
 /* Utkastrad, bara i demoläget */
@@ -115,39 +107,43 @@ a:hover {
   margin: 0;
   padding: 8px 16px;
   text-align: center;
-  font-size: 0.9rem;
-  color: var(--dampad);
-  border-bottom: 1px solid var(--linje);
+  font-size: 0.85rem;
+  background: var(--morkt);
+  color: #c9ced6;
 }
 
-.demo-rad strong {
-  color: var(--text);
+.demo-rad strong,
+.demo-rad a {
+  color: #fff;
 }
 
 /* Sidhuvud och sidfot */
 
 .sidhuvud {
+  background: var(--yta);
+}
+
+.sidhuvud .inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding-block: 20px;
-  flex-wrap: wrap;
+  padding-block: 18px;
 }
 
 .ordmarke {
-  font-weight: 800;
   font-size: 1.15rem;
-  letter-spacing: -0.02em;
+  font-weight: 400;
+  letter-spacing: -0.01em;
   text-decoration: none;
+  white-space: nowrap;
 }
 
-.ordmarke span {
-  color: var(--natverket);
+.ordmarke b {
+  font-weight: 700;
 }
 
-.sidhuvud nav,
-.sidfot nav {
+.sidhuvud nav {
   display: flex;
   gap: 20px;
 }
@@ -163,11 +159,15 @@ a:hover {
 
 .sidfot {
   border-top: 1px solid var(--linje);
-  padding-block: 24px 40px;
+}
+
+.sidfot .inner {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 12px 24px;
   flex-wrap: wrap;
+  padding-block: 28px 40px;
   color: var(--dampad);
   font-size: 0.9rem;
 }
@@ -176,22 +176,94 @@ a:hover {
   margin: 0;
 }
 
-/* Startsidan */
-
-.hero {
-  padding-block: 32px 16px;
+.sidfot nav {
+  display: flex;
+  gap: 20px;
 }
 
-.hero h1 {
-  max-width: 15em;
+@media (max-width: 400px) {
+  .ordmarke {
+    font-size: 1.02rem;
+  }
+
+  .sidhuvud nav {
+    gap: 14px;
+  }
 }
 
-.hero .unga {
-  color: var(--unga);
+/* Gradientbandet */
+
+.band {
+  padding: 48px 0 88px;
+  color: #fff;
+  background: var(--gradient);
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 40px), 0 100%);
 }
 
-.hero .aktiespararna {
-  color: var(--aktiespararna);
+.band-stor {
+  padding: 72px 0 128px;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 64px), 0 100%);
+}
+
+.band h1 {
+  max-width: 16em;
+  margin: 0;
+}
+
+.band-stor h1 {
+  max-width: 14em;
+  font-size: clamp(2.2rem, 6vw, 4rem);
+  line-height: 1.05;
+}
+
+.etikett {
+  margin: 0 0 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.band-ingress {
+  max-width: 34em;
+  margin: 20px 0 0;
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.94);
+}
+
+.knappar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.knapp {
+  display: inline-block;
+  padding: 12px 22px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  background: #fff;
+  color: var(--bla-text);
+}
+
+.knapp-sekundar {
+  background: transparent;
+  color: #fff;
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.75);
+}
+
+/* Sektioner */
+
+.sektion {
+  padding-block: 48px;
+}
+
+.sektion-vit {
+  background: var(--yta);
 }
 
 .rubrik-rad {
@@ -199,24 +271,35 @@ a:hover {
   align-items: baseline;
   justify-content: space-between;
   gap: 16px;
-  margin-top: 2em;
+  margin-bottom: 20px;
 }
 
-.rubrik-rad h1,
 .rubrik-rad h2 {
-  margin-top: 0;
+  margin: 0;
 }
 
-.ruta {
-  margin-top: 56px;
-  padding: 28px;
-  background: var(--yta);
-  border: 1px solid var(--linje);
-  border-radius: var(--radie);
+.fakta {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
 }
 
-.ruta h2 {
-  margin-top: 0;
+.fakta li {
+  display: grid;
+  gap: 6px;
+  align-content: start;
+}
+
+.fakta b {
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.fakta span {
+  color: var(--dampad);
 }
 
 /* Eventlistan */
@@ -235,8 +318,8 @@ a:hover {
   gap: 20px;
   padding: 20px;
   background: var(--yta);
-  border: 1px solid var(--linje);
   border-radius: var(--radie);
+  box-shadow: 0 1px 2px rgba(29, 35, 43, 0.06);
 }
 
 .event-datum {
@@ -249,9 +332,10 @@ a:hover {
 
 .event-dag {
   font-size: 2rem;
-  font-weight: 800;
+  font-weight: 500;
   letter-spacing: -0.03em;
   font-variant-numeric: tabular-nums;
+  color: var(--bla-text);
 }
 
 .event-manad {
@@ -269,7 +353,7 @@ a:hover {
 
 .event h3 {
   font-size: 1.2rem;
-  margin: 4px 0 4px;
+  margin: 4px 0;
   overflow-wrap: anywhere;
 }
 
@@ -291,7 +375,7 @@ a:hover {
 
 .arrangor {
   font-size: 0.75rem;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--dampad);
@@ -310,7 +394,11 @@ a:hover {
 }
 
 .tomt {
+  padding: 24px;
+  background: var(--yta);
+  border-radius: var(--radie);
   color: var(--dampad);
+  margin: 0;
 }
 
 @media (max-width: 480px) {
@@ -325,14 +413,44 @@ a:hover {
   }
 }
 
-/* Om oss */
+/* Prenumerationspanelen */
+
+.utskick {
+  padding: 32px;
+  border-radius: 12px;
+  color: #fff;
+  background: var(--gradient);
+}
+
+.utskick h2 {
+  margin-top: 0;
+}
+
+.utskick > p {
+  margin-top: 0;
+}
+
+.utskick .kryss.liten,
+.utskick .kryss.liten a,
+.utskick .klart,
+.utskick .fel {
+  color: #fff;
+}
+
+.utskick button {
+  background: #fff;
+  color: var(--bla-text);
+}
+
+/* Löptext och Om oss */
 
 .lopande {
   max-width: 38em;
 }
 
 .lopande h2 {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
+  font-weight: 600;
   margin-top: 1.6em;
 }
 
@@ -377,14 +495,15 @@ textarea {
   width: 100%;
   padding: 10px 12px;
   background: var(--yta);
+  color: var(--text);
   border: 1px solid var(--linje);
-  border-radius: 10px;
+  border-radius: 8px;
 }
 
 input:not([type="checkbox"]):focus,
 select:focus,
 textarea:focus {
-  border-color: var(--natverket);
+  border-color: var(--bla-text);
   outline: none;
 }
 
@@ -393,19 +512,17 @@ input[type="checkbox"] {
   height: 18px;
   margin: 3px 0 0;
   flex: none;
-  accent-color: var(--natverket);
+  accent-color: var(--bla-text);
 }
 
-button,
-.knapp {
+button {
   display: inline-block;
   padding: 10px 18px;
   border: 0;
-  border-radius: 10px;
-  background: var(--natverket);
+  border-radius: 8px;
+  background: var(--bla-text);
   color: var(--pa-accent);
   font-weight: 600;
-  text-decoration: none;
   cursor: pointer;
   white-space: nowrap;
 }
@@ -503,7 +620,7 @@ input.falla {
 }
 
 .klart {
-  color: var(--aktiespararna);
+  color: var(--gron-text);
   font-weight: 600;
   margin: 0;
 }
@@ -513,16 +630,15 @@ input.falla {
   color: var(--dampad);
 }
 
-/* Medlemssidorna */
+/* Medlemssidorna (används inte i utkastet) */
 
 .medlem-nav {
-  width: min(var(--bredd), 100% - 32px);
-  margin: 0 auto;
+  width: min(1080px, 100% - 32px);
+  margin: 24px auto 0;
   display: flex;
   gap: 20px;
   padding: 12px 16px;
   background: var(--yta);
-  border: 1px solid var(--linje);
   border-radius: var(--radie);
 }
 
@@ -533,6 +649,16 @@ input.falla {
 .medlem-nav a {
   font-weight: 600;
   text-decoration: none;
+}
+
+.medlem main {
+  width: min(1080px, 100% - 32px);
+  margin-inline: auto;
+  padding-block: 32px 64px;
+}
+
+.medlem main.smal {
+  max-width: 720px;
 }
 
 .admin-lista {

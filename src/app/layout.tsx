@@ -1,14 +1,12 @@
 import type { Metadata } from "next";
-import { Nunito, Outfit, Schibsted_Grotesk } from "next/font/google";
+import { Outfit } from "next/font/google";
 import { DEMO } from "@/lib/demo";
 import "./globals.css";
 
-// next/font laddar ner typsnitten vid bygget och serverar dem från sajten,
-// så besökarna gör inga anrop till Google. Outfit och Nunito används av
-// designförslagen under /forslag; när ett förslag är valt rensas resten bort.
-const typsnitt = Schibsted_Grotesk({ subsets: ["latin"], variable: "--typsnitt" });
-const geometrisk = Outfit({ subsets: ["latin"], variable: "--typsnitt-geometrisk" });
-const rundad = Nunito({ subsets: ["latin"], variable: "--typsnitt-rundad" });
+// Outfit: geometriskt som Aktiespararnas Geomanist, men fritt. next/font laddar
+// ner det vid bygget och serverar det från sajten, så besökarna gör inga anrop
+// till Google.
+const typsnitt = Outfit({ subsets: ["latin"], variable: "--typsnitt" });
 
 export const metadata: Metadata = {
   // URL sätts av Netlify vid bygget och gäller tills en egen domän finns.
@@ -16,12 +14,12 @@ export const metadata: Metadata = {
   robots: DEMO ? { index: false, follow: false } : undefined,
   title: { default: "Investerarnätverket", template: "%s · Investerarnätverket" },
   description:
-    "Event och information från Aktiespararna och Unga Aktiesparare, samlat av ett nätverk som vill vara bryggan mellan dem.",
+    "Investerarnätverket i Göteborg och Västra Götaland: event från Aktiespararna, Unga Aktiesparare och nätverket självt.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="sv" className={`${typsnitt.variable} ${geometrisk.variable} ${rundad.variable}`}>
+    <html lang="sv" className={typsnitt.variable}>
       <body>{children}</body>
     </html>
   );
